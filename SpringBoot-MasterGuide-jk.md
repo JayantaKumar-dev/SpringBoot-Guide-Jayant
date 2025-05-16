@@ -42,3 +42,29 @@
 - Deploy applications to cloud environments
 
 - Follow best practices for maintainability and performance
+
+
+# 1. Introduction to Spring Boot
+
+# 🧠 What is Spring Boot?
+Spring Boot is a Java-based framework built on top of the Spring Framework to simplify the development of production-grade Spring applications.
+
+## 🎯 Why Use Spring Boot?
+
+- Auto-configuration
+
+- Embedded servers (Tomcat, Jetty)
+
+- Opinionated defaults
+
+- Starter dependencies
+
+- Rapid development
+
+## 🧱 Spring Boot vs Spring Framework
+| Feature           | Spring Framework       | Spring Boot          |
+|-------------------|------------------------|----------------------|
+| Configuration     | Manual, verbose        | Auto-configured      |
+| Server setup      | External container     | Embedded server      |
+| Learning curve    | Steep                  | Beginner-friendly    |
+| Application size  | Lightweight            | Lightweight          |
