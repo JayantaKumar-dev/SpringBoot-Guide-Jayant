@@ -149,6 +149,8 @@ public class HelloController {
 server.port=8080
 spring.application.name=demo-app
 ```
+Bydefault Spring boot run at port:8080 not Mandatory to add this.
+
 ### Run Application
 ```bash
 # In terminal or IDE
