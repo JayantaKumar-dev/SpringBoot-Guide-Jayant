@@ -207,3 +207,15 @@ MVC stands for Model - View - Controller, a common architectural pattern used to
 
 - Standardized across enterprise projects
 
+## 🏛️ How MVC works in Spring Boot
+```plaintext
+Client (Postman/UI) → Controller → Service → Repository → Database (Model)
+```
+
+- Controller: @RestController
+
+- Service Layer: @Service
+
+- Repository Layer: @Repository (extends JpaRepository)
+
+- Model: @Entity (POJOs mapped to DB tables)
