@@ -162,3 +162,37 @@ Visit: http://localhost:8080/api/hello (in postman or browser)
 ```text
 Hello, Spring Boot 2025!
 ```
+
+
+# 🧩 Understanding MVC Architecture in Spring Boot
+
+MVC stands for Model - View - Controller, a common architectural pattern used to separate application logic.
+
+## 🧱 Components
+
+1. Model (M)
+
+  - Represents the application's data and business logic.
+  
+  - Example: Java classes like User, Product, Course, or services that process data.
+
+2. View (V)
+
+  - Responsible for rendering data (usually used with Thymeleaf, JSP, or frontend frameworks).
+  
+  - For REST APIs, this is usually replaced by JSON responses (no traditional "view").
+
+3. Controller (C)
+  
+  - Handles incoming HTTP requests, calls the appropriate services (Model), and returns the response (View).
+
+### 🔄 How Spring Boot Maps It
+![Spring Boot Flow Diagram](https://i.imgur.com/JQZ1vjX.png)
+
+┌────────┐    ┌─────────────┐    ┌────────┐    ┌──────────────┐    ┌──────────┐
+│  User  │───▶│ Controller  │───▶│ Service│───▶│ Repository   │───▶│ Database │
+└────────┘    └─────────────┘    └────────┘    └──────────────┘    └──────────┘
+                     ▼
+               ┌─────────────┐
+               │ JSON Response│
+               └─────────────┘
