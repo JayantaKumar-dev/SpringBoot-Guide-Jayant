@@ -174,6 +174,42 @@ Visit: http://localhost:8080/api/hello (in postman or browser)
 Hello, Spring Boot 2025!
 ```
 
+# What Does @SpringBootApplication Do Internally?
+-> This annotation is magic, and here’s what happens behind the scenes:
+
+```java
+@SpringBootApplication
+```
+Is equivalent to:
+
+```java
+@Configuration
+@EnableAutoConfiguration
+@ComponentScan
+```
+Explanation:
+| Annotation                | What it Does                                                                 |
+|--------------------------|-----------------------------------------------------------------------------|
+| `@Configuration`         | Marks class as source of Spring beans                                       |
+| `@EnableAutoConfiguration` | Enables Spring Boot's auto-setup based on dependencies                     |
+| `@ComponentScan`         | Automatically finds and registers your beans (`@Component`, `@Service`, `@Repository`, `@RestController`) |
+
+## What Happens Internally?
+1. It starts an embedded Tomcat server
+
+2. It scans packages for Spring components
+
+3. It auto-configures things like:
+
+  - Jackson for JSON
+  
+  - Hibernate if JPA is present
+  
+  - DB configs
+  
+  - Controllers and endpoints
+
+------------------------------------------------
 
 # 🧩 Understanding MVC Architecture in Spring Boot
 
@@ -237,6 +273,8 @@ Client (Postman/UI) → Controller → Service → Repository → Database (Mode
 ##### Short Answer:
 A Bean is just a Java object that is managed by the Spring container (called the ApplicationContext). Spring creates, maintains, and injects it automatically wherever needed.
 
+*Note: The Spring container is the core of the Spring Framework, responsible for managing the lifecycle and configuration of application objects (called "beans") using Inversion of Control (IoC) and Dependency Injection (DI) principles.*
+
 ### Why is it special?
 - You don't create it manually using new
 
@@ -266,3 +304,42 @@ Spring injects the dependency automatically — loose coupling, better testabili
 | `@Repository`  | DAO layer, auto exception translation                                   |
 | `@Controller`  | Web controller (for web views)                                          |
 | `@RestController` | RESTful web controller (`@Controller` + `@ResponseBody`)               |
+
+
+## ✅ Constructor Injection (Preferred in 2025)
+### 🔐 Why Constructor Injection?
+
+- Immutability: dependencies set once
+
+- Easier for testing
+
+- No need for @Autowired (as of Spring 4.3+)
+
+💡 Example:
+```java
+@Service
+public class UserService {
+    private final UserRepository userRepo;
+
+    public UserService(UserRepository userRepo) {
+        this.userRepo = userRepo;
+    }
+}
+```
+
+## 🛠️ Manual Bean Registration: @Configuration + @Bean
+### 🔧 Use when you:
+- Need 3rd party class injection
+
+- Want full control over bean creation
+
+```java
+@Configuration
+public class AppConfig {
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+}
+```
+In this case we Use 3rd party Class injection. So initially Sprig does not kmow to which class bean to be create. So we need to tell Spring IoC for Which class need to be bean create ny configuring this way.
