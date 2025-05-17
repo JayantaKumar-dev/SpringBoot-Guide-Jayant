@@ -230,3 +230,39 @@ Client (Postman/UI) → Controller → Service → Repository → Database (Mode
 - Repository Layer: @Repository (extends JpaRepository)
 
 - Model: @Entity (POJOs mapped to DB tables)
+
+------
+
+# What is a "Bean" in Spring Boot?
+##### Short Answer:
+A Bean is just a Java object that is managed by the Spring container (called the ApplicationContext). Spring creates, maintains, and injects it automatically wherever needed.
+
+### Why is it special?
+- You don't create it manually using new
+
+- Spring controls its lifecycle
+
+- It supports dependency injection (DI)
+
+### 🚫 Without DI:
+
+```java
+UserService service = new UserService(); // tightly coupled
+```
+### ✅ With DI:
+
+```java
+@Autowired
+UserService service;
+```
+Spring injects the dependency automatically — loose coupling, better testability, and cleaner code.
+
+## 💉 DI Annotations: @Component, @Service, @Repository, @Controller
+
+| Annotation      | Purpose                                                                 |
+|----------------|-------------------------------------------------------------------------|
+| `@Component`   | Generic Spring-managed component                                        |
+| `@Service`     | Business logic layer                                                    |
+| `@Repository`  | DAO layer, auto exception translation                                   |
+| `@Controller`  | Web controller (for web views)                                          |
+| `@RestController` | RESTful web controller (`@Controller` + `@ResponseBody`)               |
