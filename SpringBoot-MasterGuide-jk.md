@@ -174,7 +174,7 @@ Visit: http://localhost:8080/api/hello (in postman or browser)
 Hello, Spring Boot 2025!
 ```
 
-# What Does @SpringBootApplication Do Internally?
+# What Does `@SpringBootApplication` Do Internally?
 -> This annotation is magic, and here’s what happens behind the scenes:
 
 ```java
