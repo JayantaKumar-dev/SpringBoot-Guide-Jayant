@@ -201,13 +201,13 @@ Explanation:
 
 3. It auto-configures things like:
 
-- Jackson for JSON
-  
-- Hibernate if JPA is present
-  
-- DB configs
-  
-- Controllers and endpoints
+  - Jackson for JSON
+    
+  - Hibernate if JPA is present
+    
+  - DB configs
+    
+  - Controllers and endpoints
 
 ------------------------------------------------
 
