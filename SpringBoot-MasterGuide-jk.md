@@ -429,7 +429,7 @@ Spring Boot projects (using Maven) rely on the pom.xml file to manage:
   </build>
 </project>
 ```
-* Popular Website for Finding All Spring Maven Repository to add in pom.xml file: [mvnrepository.com](url)
+* Popular Website for Finding All Spring Maven Repository to add in pom.xml file: https://mvnrepository.com/
 
 ## 📁 2. application.properties – App Configuration File
 Spring Boot automatically loads this file from:
@@ -463,6 +463,17 @@ spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
 ```
 
+## 💬 Reading Values from the .properties file : Using @Value
+```java
+@Value("${app.version}")
+private String appVersion;
+```
+
+#### 👇 In application.properties
+```properties
+app.version=1.0.0
+```
+
 ## 📁 application.yml – A Cleaner Alternative to application.properties
 Spring Boot supports both .properties and .yml (YAML) files for configuration.
 
@@ -484,6 +495,55 @@ spring:
 ```
 -> Same as Application.properties file but structure is different
 
+
+# 🌍 3. Spring Profiles (dev, prod, test)
+Spring Profiles allow different configurations for different environments.
+
+### 🔄 How it works:
+1. You define config files like:
+
+  - application-dev.properties
+  
+  - application-prod.properties
+
+2. Activate the profile in the main file:
+
+```properties
+# in application.properties
+spring.profiles.active=dev
+```
+
+3. Spring loads application-dev.properties automatically.
+
+#### 🧪 Example Use Case
+🔧 application.properties
+```properties
+spring.profiles.active=dev
+```
+🧪 application-dev.properties
+```properties
+server.port=8080
+debug=true
+```
+🚀 application-prod.properties
+```properties
+server.port=80
+debug=false
+```
+
+#### 📦 Profile-based Beans
+You can also define beans for specific environments:
+
+```java
+@Service
+@Profile("dev")
+public class DevEmailService implements EmailService { }
+
+@Service
+@Profile("prod")
+public class ProdEmailService implements EmailService { }
+```
+Spring will inject the appropriate bean based on the active profile.
 
 
 
