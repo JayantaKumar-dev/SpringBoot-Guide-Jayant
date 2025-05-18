@@ -563,17 +563,28 @@ We'll also build a simple app: A REST API to manage Student data.
 
 1. Real-World Architecture (M-R-S-C)
 Layered Architecture Diagram:
-
-@startuml
-top to bottom direction
-rectangle "Client/Postman/React UI" as client
-rectangle "Controller\n(API Layer/REST API)" as controller
-rectangle "Service\n(Business Logic/Validation)" as service
-rectangle "Repository\n(Database Communication)" as repo
-rectangle "Model\n(Data Class/Entity)" as model
-
-client --> controller
-controller --> service
-service --> repo
-repo --> model
-@enduml
+```
+┌───────────────────────┐
+│ Client/Postman/React UI │
+└───────────┬───────────┘
+            │
+    ┌───────▼───────┐
+    │  Controller   │
+    │ (API Layer)   │
+    └───────┬───────┘
+            │
+    ┌───────▼───────┐
+    │    Service    │
+    │ (Business Logic)│
+    └───────┬───────┘
+            │
+    ┌───────▼───────┐
+    │  Repository   │
+    │ (JPA/Hibernate)│
+    └───────┬───────┘
+            │
+    ┌───────▼───────┐
+    │     Model     │
+    │ (Data Entity) │
+    └───────────────┘
+```
