@@ -545,6 +545,7 @@ public class ProdEmailService implements EmailService { }
 ```
 Spring will inject the appropriate bean based on the active profile.
 
+--------------------------------------------------------------------------------
 
 # Spring Boot Architecture – Model, Repository, Service, Controller (M-R-S-C)
 Goal:
@@ -562,8 +563,17 @@ We'll also build a simple app: A REST API to manage Student data.
 
 1. Real-World Architecture (M-R-S-C)
 Layered Architecture Diagram:
-flowchart TD
-    A[Client/Postman/React UI] --> B[Controller\n(API Layer/REST API)]
-    B --> C[Service\n(Business Logic/Validation)]
-    C --> D[Repository\n(Database Communication)]
-    D --> E[Model\n(Data Class/Entity)]
+
+@startuml
+top to bottom direction
+rectangle "Client/Postman/React UI" as client
+rectangle "Controller\n(API Layer/REST API)" as controller
+rectangle "Service\n(Business Logic/Validation)" as service
+rectangle "Repository\n(Database Communication)" as repo
+rectangle "Model\n(Data Class/Entity)" as model
+
+client --> controller
+controller --> service
+service --> repo
+repo --> model
+@enduml
