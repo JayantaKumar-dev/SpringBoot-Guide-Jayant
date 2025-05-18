@@ -559,8 +559,6 @@ Understand how a Spring Boot application is structured in real-world projects us
   
   4. Controller (Handles API requests)
 
-We'll also build a simple app: A REST API to manage Student data.
-
 1. Real-World Architecture (M-R-S-C)
 Layered Architecture Diagram:
 ```
