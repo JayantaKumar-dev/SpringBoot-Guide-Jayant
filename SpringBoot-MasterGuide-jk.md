@@ -343,3 +343,147 @@ public class AppConfig {
 }
 ```
 In this case we Use 3rd party Class injection. So initially Sprig does not kmow to which class bean to be create. So we need to tell Spring IoC for Which class need to be bean create ny configuring this way.
+
+
+# ⚙️ Spring Boot Configuration Essentials (pom.xml, application.properties, and Profiles)
+## 📄 1. pom.xml – The Build & Dependency File (Maven)
+Spring Boot projects (using Maven) rely on the pom.xml file to manage:
+
+- Project dependencies (Spring Boot, DB, Web, Security, etc.)
+
+- Plugin configurations (build tools, Java version, etc.)
+
+- Dependency versions using Spring Boot BOM (Bill of Materials)
+
+### 🧱 Structure of a Typical pom.xml
+```xml
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.jobgenie</groupId>
+  <artifactId>jobgenie</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+  <name>JobGenie</name>
+  <description>AI-powered Job Recommendation App</description>
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>3.2.3</version> <!-- Latest in 2025 -->
+    <relativePath/> <!-- lookup parent from repository -->
+  </parent>
+
+  <properties>
+    <java.version>21</java.version> <!-- Java 21 support in Spring Boot 3.x -->
+  </properties>
+
+  <dependencies>
+    <!-- Spring Boot Starters -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-security</artifactId>
+    </dependency>
+
+    <!-- JWT, Cloudinary, etc. -->
+    <dependency>
+      <groupId>io.jsonwebtoken</groupId>
+      <artifactId>jjwt-api</artifactId>
+      <version>0.11.5</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <optional>true</optional>
+    </dependency>
+
+    <!-- DB Connector -->
+    <dependency>
+      <groupId>com.mysql</groupId>
+      <artifactId>mysql-connector-j</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+</project>
+```
+* Popular Website for Finding All Spring Maven Repository to add in pom.xml file: mvnrepository.com
+
+## 📁 2. application.properties – App Configuration File
+Spring Boot automatically loads this file from:
+
+```plaintext
+src/main/resources/application.properties
+```
+
+✅ Common Keys:
+| Property                                | Purpose                                      |
+|----------------------------------------|---------------------------------------------|
+| `server.port=8081`                     | Custom port for application                 |
+| `spring.datasource.url`                | JDBC database connection URL                |
+| `spring.datasource.username`           | Database username                           |
+| `spring.datasource.password`           | Database password                           |
+| `spring.jpa.hibernate.ddl-auto`        | Auto-create schema (update, create, etc.)   |
+| `spring.jpa.show-sql=true`             | Log all SQL queries to console              |
+| `spring.jpa.properties.hibernate.dialect` | Hibernate dialect for specific database    |
+
+`💡 Example:`
+```properties
+server.port=8080
+
+#Database Connection Properties
+spring.datasource.url=jdbc:mysql://localhost:3306/jobgenie
+spring.datasource.username=root
+spring.datasource.password=root123
+
+#Hibernate properties
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+```
+
+## 📁 application.yml – A Cleaner Alternative to application.properties
+Spring Boot supports both .properties and .yml (YAML) files for configuration.
+
+```yaml
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/jobgenie
+    username: root
+    password: root123
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+```
+-> Same as Application.properties file but structure is different
+
+
+
+
