@@ -429,7 +429,7 @@ Spring Boot projects (using Maven) rely on the pom.xml file to manage:
   </build>
 </project>
 ```
-* Popular Website for Finding All Spring Maven Repository to add in pom.xml file: [MVN Repository](mvnrepository.com)
+* Popular Website for Finding All Spring Maven Repository to add in pom.xml file: [mvnrepository.com](url)
 
 ## 📁 2. application.properties – App Configuration File
 Spring Boot automatically loads this file from:
